@@ -169,20 +169,20 @@ public class CheckoutSolution {
         }
     }
 
-    private int multiOffer(Map<Character, Integer> counts, List<Character> multiOffer1Possibilities, int multiOfferCount, int multiOfferValue) {
+    private int multiOffer(Map<Character, Integer> counts, List<Character> multiOfferPossibilities, int multiOfferCount, int multiOfferValue) {
         int total = 0;
-        int offer = 0;
+        int offer = 1; // Start at some arbitrary, non zero value.
         while (offer != 0) {
-            offer = singleMultiOffer(counts, multiOffer1Possibilities, multiOfferCount, multiOfferValue);
+            offer = singleMultiOffer(counts, multiOfferPossibilities, multiOfferCount, multiOfferValue);
             total += offer;
         }
         return total;
     }
 
-    private int singleMultiOffer(Map<Character, Integer> counts, List<Character> multiOffer1Possibilities, int multiOfferCount, int multiOfferValue) {
+    private int singleMultiOffer(Map<Character, Integer> counts, List<Character> multiOfferPossibilities, int multiOfferCount, int multiOfferValue) {
         int total = 0;
         List<Character> matches = new ArrayList<>();
-        for (Character character : multiOffer1Possibilities) {
+        for (Character character : multiOfferPossibilities) {
             if (counts.getOrDefault(character, Integer.valueOf(0)) > 0) {
                 matches.add(character);
             }
