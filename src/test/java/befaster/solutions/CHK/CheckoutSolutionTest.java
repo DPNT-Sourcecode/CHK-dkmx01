@@ -44,6 +44,7 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("FFFFFF"), equalTo(40));
         assertThat(checkout.checkout("G"), equalTo(20));
         assertThat(checkout.checkout("ABCDEFG"), equalTo(15 + 20 + 30 + 50 + 40 + 10 + 20));
+        assertThat(checkout.checkout("UUU"), equalTo(120));
     }
 
 }
