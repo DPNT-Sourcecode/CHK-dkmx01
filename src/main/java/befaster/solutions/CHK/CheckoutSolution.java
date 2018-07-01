@@ -12,6 +12,11 @@ public class CheckoutSolution {
     private static final int NUM_BS_FOR_OFFER = 2;
     private static final int B_OFFER = 45;
 
+    private static final Character FREE_OFFER_1_REQUIREMENT_SUK = 'E';
+    private static final int FREE_OFFER_1_REQUIREMENT_COUNT = 2;
+    private static final Character FREE_OFFER_1_FREE_SUK = 'B';
+    private static final int FREE_OFFER_1_FREE_COUNT = 1;
+
     private static Map<Character, Integer> values = new HashMap<>();
     static {
         values.put('A', 50);
@@ -32,6 +37,7 @@ public class CheckoutSolution {
         total += handleOffer(counts, 'A', NUM_AS_FOR_5_OFFER, A_5_OFFER);
         total += handleOffer(counts, 'A', NUM_AS_FOR_3_OFFER, A_3_OFFER);
         total += handleOffer(counts, 'B', NUM_BS_FOR_OFFER, B_OFFER);
+        freeOffer(counts, FREE_OFFER_1_REQUIREMENT_SUK, FREE_OFFER_1_REQUIREMENT_COUNT, FREE_OFFER_1_FREE_SUK, FREE_OFFER_1_FREE_SUK);
         total = handleSkus(counts, total);
 
         return total;
@@ -58,6 +64,19 @@ public class CheckoutSolution {
             }
         }
         return total;
+    }
+
+    private void freeOffer(Map<Character, Integer> counts, Character freeOffer1RequirementSuk, int freeOffer1RequirementCount, Character freeOffer1FreeSuk, Character freeOffer1FreeSuk1) {
+        int numRequirementSkus = counts.getOrDefault(freeOffer1RequirementSuk, Integer.valueOf(0));
+        int numFreeSkus = numRequirementSkus / freeOffer1RequirementCount;
+        if (numFreeSkus > 0) {
+            int numOfferSkus = counts.getOrDefault(freeOffer1FreeSuk, Integer.valueOf(0));
+            numOfferSkus -= numFreeSkus * freeOffer1FreeSuk1;
+            if (numOfferSkus < 0) {
+                numOfferSkus = 0;
+            }
+            counts.put(freeOffer1FreeSuk, numOfferSkus);
+        }
     }
 
 }
