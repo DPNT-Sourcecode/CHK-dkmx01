@@ -52,7 +52,9 @@ public class CheckoutSolution {
     private static final Character FREE_OFFER_4_FREE_SUK = 'Q';
     private static final int FREE_OFFER_4_FREE_COUNT = 1;
 
-    private static final int FREE_OFFER_5_MIN = 0;
+    /* One free U for every 3 failed the test. */
+    /* Try onr free U fro every 3 with a minimum of 4. */
+    private static final int FREE_OFFER_5_MIN = 4;
     private static final Character FREE_OFFER_5_REQUIREMENT_SUK = 'U';
     private static final int FREE_OFFER_5_REQUIREMENT_COUNT = 3;
     private static final Character FREE_OFFER_5_FREE_SUK = 'U';
