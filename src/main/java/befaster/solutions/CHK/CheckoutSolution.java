@@ -1,6 +1,7 @@
 package befaster.solutions.CHK;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CheckoutSolution {
@@ -8,20 +9,28 @@ public class CheckoutSolution {
     /* Ideally, moveall these to another class. */
     private static final int NUM_AS_FOR_5_OFFER = 5;
     private static final int A_5_OFFER = 200;
+
     private static final int NUM_AS_FOR_3_OFFER = 3;
     private static final int A_3_OFFER = 130;
+
     private static final int NUM_BS_FOR_OFFER = 2;
     private static final int B_OFFER = 45;
+
     private static final int NUM_HS_FOR_10_OFFER = 10;
     private static final int H_10_OFFER = 80;
+
     private static final int NUM_HS_FOR_5_OFFER = 5;
     private static final int H_5_OFFER = 45;
+
     private static final int NUM_KS_FOR_2_OFFER = 2;
-    private static final int K_2_OFFER = 150;
+    private static final int K_2_OFFER = 120;
+
     private static final int NUM_PS_FOR_5_OFFER = 5;
     private static final int P_5_OFFER = 200;
+
     private static final int NUM_QS_FOR_3_OFFER = 3;
     private static final int Q_3_OFFER = 80;
+
     private static final int NUM_VS_FOR_3_OFFER = 3;
     private static final int V_3_OFFER = 130;
     private static final int NUM_VS_FOR_2_OFFER = 2;
@@ -54,11 +63,14 @@ public class CheckoutSolution {
 
     /* One free U for every 3 failed the test. */
     /* Try onr free U fro every 3 with a minimum of 4. */
+    /* This appears correct, but we have had to use data not in the requirement. */
     private static final int FREE_OFFER_5_MIN = 4;
     private static final Character FREE_OFFER_5_REQUIREMENT_SUK = 'U';
     private static final int FREE_OFFER_5_REQUIREMENT_COUNT = 3;
     private static final Character FREE_OFFER_5_FREE_SUK = 'U';
     private static final int FREE_OFFER_5_FREE_COUNT = 1;
+
+    private static final List<Character> MULTI_OFFER_POSSIBILITIES = 
 
     private static Map<Character, Integer> values = new HashMap<>();
     static {
@@ -72,7 +84,7 @@ public class CheckoutSolution {
         values.put('H', 10);
         values.put('I', 35);
         values.put('J', 60);
-        values.put('K', 80);
+        values.put('K', 70);
         values.put('L', 90);
         values.put('M', 15);
         values.put('N', 40);
@@ -80,14 +92,14 @@ public class CheckoutSolution {
         values.put('P', 50);
         values.put('Q', 30);
         values.put('R', 50);
-        values.put('S', 30);
+        values.put('S', 20);
         values.put('T', 20);
         values.put('U', 40);
         values.put('V', 50);
         values.put('W', 20);
-        values.put('X', 90);
-        values.put('Y', 10);
-        values.put('Z', 50);
+        values.put('X', 17);
+        values.put('Y', 20);
+        values.put('Z', 21);
     }
 
     public Integer checkout(String skus) {
