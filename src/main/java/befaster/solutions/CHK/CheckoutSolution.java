@@ -45,8 +45,11 @@ public class CheckoutSolution {
         // Handle remaining skus
         for (Map.Entry<Character, Integer> result : counts.entrySet()) {
             Character type = result.getKey();
-            Integer value = values.getOrDefault(type, Integer.valueOf(0));
-            total += value;
+            Integer value = values.get(type);
+            if (value != 0) {
+                Integer count = result.getValue();
+                total += count * value;
+            }
         }
 
         return total;
