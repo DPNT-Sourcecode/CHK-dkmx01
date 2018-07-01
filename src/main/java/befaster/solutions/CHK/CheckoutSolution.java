@@ -20,7 +20,7 @@ public class CheckoutSolution {
 
     private static final int FREE_OFFER_2_MIN = 3;
     private static final Character FREE_OFFER_2_REQUIREMENT_SUK = 'F';
-    private static final int FREE_OFFER_2_REQUIREMENT_COUNT = 2;
+    private static final int FREE_OFFER_2_REQUIREMENT_COUNT = 3;
     private static final Character FREE_OFFER_2_FREE_SUK = 'F';
     private static final int FREE_OFFER_2_FREE_COUNT = 1;
 
