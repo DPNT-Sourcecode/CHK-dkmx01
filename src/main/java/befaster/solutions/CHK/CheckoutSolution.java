@@ -1,15 +1,14 @@
 package befaster.solutions.CHK;
 
-import befaster.runner.SolutionNotImplementedException;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
-    private static final int NUM_AS_FOR_OFFER = 3;
-    private static final int A_OFFER = 130;
+    private static final int NUM_AS_FOR_5_OFFER = 5;
+    private static final int A_5_OFFER = 200;
+    private static final int NUM_AS_FOR_3_OFFER = 3;
+    private static final int A_3_OFFER = 130;
     private static final int NUM_BS_FOR_OFFER = 2;
     private static final int B_OFFER = 45;
 
@@ -19,6 +18,7 @@ public class CheckoutSolution {
         values.put('B', 30);
         values.put('C', 20);
         values.put('D', 15);
+        values.put('E', 40);
     }
 
     public Integer checkout(String skus) {
@@ -29,7 +29,8 @@ public class CheckoutSolution {
         }
 
         int total = 0;
-        total += handleOffer(counts, 'A', NUM_AS_FOR_OFFER, A_OFFER);
+        total += handleOffer(counts, 'A', NUM_AS_FOR_5_OFFER, A_5_OFFER);
+        total += handleOffer(counts, 'A', NUM_AS_FOR_3_OFFER, A_3_OFFER);
         total += handleOffer(counts, 'B', NUM_BS_FOR_OFFER, B_OFFER);
         total = handleSkus(counts, total);
 
