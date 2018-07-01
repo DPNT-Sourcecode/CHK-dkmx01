@@ -183,7 +183,8 @@ public class CheckoutSolution {
         int total = 0;
         List<Character> matches = new ArrayList<>();
         for (Character character : multiOfferPossibilities) {
-            if (counts.getOrDefault(character, Integer.valueOf(0)) > 0) {
+            int count = counts.getOrDefault(character, Integer.valueOf(0));
+            for (int i = 0; i < count; i++) {
                 matches.add(character);
             }
         }
