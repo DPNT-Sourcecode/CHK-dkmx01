@@ -20,7 +20,7 @@ public class CheckoutSolutionTest {
     @Test
     public void checkout() throws Exception {
         assertThat(checkout.checkout(""), equalTo(0));
-        assertThat(checkout.checkout("a"), equalTo(0));
+        assertThat(checkout.checkout("a"), equalTo(-1));
         assertThat(checkout.checkout("A"), equalTo(50));
         assertThat(checkout.checkout("AA"), equalTo(50 + 50));
         assertThat(checkout.checkout("AAA"), equalTo(130));

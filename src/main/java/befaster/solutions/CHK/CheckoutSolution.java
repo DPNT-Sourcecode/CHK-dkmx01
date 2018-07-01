@@ -48,10 +48,12 @@ public class CheckoutSolution {
     private int handleSkus(Map<Character, Integer> counts, int total) {
         for (Map.Entry<Character, Integer> result : counts.entrySet()) {
             Character type = result.getKey();
-            if (values.containsKey(type)){
+            if (values.containsKey(type)) {
                 Integer value = values.get(type);
                 Integer count = result.getValue();
                 total += count * value;
+            } else {
+                return -1;
             }
         }
         return total;
