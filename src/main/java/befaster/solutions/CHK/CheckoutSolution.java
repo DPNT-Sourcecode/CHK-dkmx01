@@ -24,6 +24,7 @@ public class CheckoutSolution {
         values.put('C', 20);
         values.put('D', 15);
         values.put('E', 40);
+        values.put('F', 10);
     }
 
     public Integer checkout(String skus) {
