@@ -29,20 +29,23 @@ public class CheckoutSolution {
         }
 
         int total = 0;
+        total += handleOffer(counts, 'A', NUM_AS_FOR_OFFER, A_OFFER);
+        total += handleOffer(counts, 'B', NUM_BS_FOR_OFFER, B_OFFER);
+        total = handleSkus(counts, total);
 
-        // Handle A offers.
-        int numAs = counts.getOrDefault('A', Integer.valueOf(0));
-        int numAOffers = numAs / NUM_AS_FOR_OFFER;
-        total += numAOffers * A_OFFER;
-        counts.put('A', numAs - numAOffers * NUM_AS_FOR_OFFER);
+        return total;
+    }
 
-        // Handle B offers.
-        int numBs = counts.getOrDefault('B', Integer.valueOf(0));
-        int numBOffers = numBs / NUM_BS_FOR_OFFER;
-        total += numBOffers * B_OFFER;
-        counts.put('B', numBs - numAOffers * NUM_BS_FOR_OFFER);
+    private int handleOffer(Map<Character, Integer> counts, Character character, int count, int value) {
+        int total = 0;
+        int numSkus = counts.getOrDefault(character, Integer.valueOf(0));
+        int numOffers = numSkus / count;
+        total += numOffers * value;
+        counts.put(character, numSkus - numOffers * count);
+        return total;
+    }
 
-        // Handle remaining skus
+    private int handleSkus(Map<Character, Integer> counts, int total) {
         for (Map.Entry<Character, Integer> result : counts.entrySet()) {
             Character type = result.getKey();
             Integer value = values.get(type);
@@ -51,7 +54,6 @@ public class CheckoutSolution {
                 total += count * value;
             }
         }
-
         return total;
     }
 

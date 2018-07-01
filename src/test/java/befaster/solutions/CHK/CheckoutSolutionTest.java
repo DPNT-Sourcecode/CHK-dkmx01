@@ -28,6 +28,7 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("BBB"), equalTo(45 + 30));
         assertThat(checkout.checkout("C"), equalTo(20));
         assertThat(checkout.checkout("D"), equalTo(15));
+        assertThat(checkout.checkout("ABCD"), equalTo(15 + 20 + 45 + 50));
     }
 
 }
