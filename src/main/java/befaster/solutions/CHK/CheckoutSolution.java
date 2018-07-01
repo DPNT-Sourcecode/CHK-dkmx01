@@ -1,9 +1,6 @@
 package befaster.solutions.CHK;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CheckoutSolution {
 
@@ -72,6 +69,7 @@ public class CheckoutSolution {
     private static final int FREE_OFFER_5_FREE_COUNT = 1;
 
     private static final List<Character> MULTI_OFFER_1_POSSIBILITIES = Arrays.asList('S', 'T', 'X', 'Y', 'Z');
+    private static final int MULTI_OFFER_1_COUNT = 3;
     private static final int MULTI_OFFER_1_VALUE = 130;
 
     private static Map<Character, Integer> values = new HashMap<>();
@@ -117,7 +115,7 @@ public class CheckoutSolution {
         freeOffer(counts, FREE_OFFER_3_MIN, FREE_OFFER_3_REQUIREMENT_SUK, FREE_OFFER_3_REQUIREMENT_COUNT, FREE_OFFER_3_FREE_SUK, FREE_OFFER_3_FREE_COUNT);
         freeOffer(counts, FREE_OFFER_4_MIN, FREE_OFFER_4_REQUIREMENT_SUK, FREE_OFFER_4_REQUIREMENT_COUNT, FREE_OFFER_4_FREE_SUK, FREE_OFFER_4_FREE_COUNT);
         freeOffer(counts, FREE_OFFER_5_MIN, FREE_OFFER_5_REQUIREMENT_SUK, FREE_OFFER_5_REQUIREMENT_COUNT, FREE_OFFER_5_FREE_SUK, FREE_OFFER_5_FREE_COUNT);
-        total += multiOffer(counts, MULTI_OFFER_1_POSSIBILITIES, MULTI_OFFER_1_VALUE);
+        total += multiOffer(counts, MULTI_OFFER_1_POSSIBILITIES, MULTI_OFFER_1_COUNT, MULTI_OFFER_1_VALUE);
         total += handleOffer(counts, 'A', NUM_AS_FOR_5_OFFER, A_5_OFFER);
         total += handleOffer(counts, 'A', NUM_AS_FOR_3_OFFER, A_3_OFFER);
         total += handleOffer(counts, 'B', NUM_BS_FOR_OFFER, B_OFFER);
@@ -171,15 +169,32 @@ public class CheckoutSolution {
         }
     }
 
-    private int multiOffer(Map<Character, Integer> counts, List<Character> multiOffer1Possibilities, int multiOffer1Value) {
+    private int multiOffer(Map<Character, Integer> counts, List<Character> multiOffer1Possibilities, int multiOfferCount, int multiOfferValue) {
         int total = 0;
-        while (int offer = singleMultiOffer(counts, multiOffer1Possibilities, multiOffer1Value) != 0) {
+        int offer = 0;
+        while (offer != 0) {
+            offer = singleMultiOffer(counts, multiOffer1Possibilities, multiOfferCount, multiOfferValue);
             total += offer;
         }
         return total;
     }
 
-    private int singleMultiOffer(Map<Character, Integer> counts, List<Character> multiOffer1Possibilities, int multiOffer1Value) {
+    private int singleMultiOffer(Map<Character, Integer> counts, List<Character> multiOffer1Possibilities, int multiOfferCount, int multiOfferValue) {
+        int total = 0;
+        List<Character> matches = new ArrayList<>();
+        for (Character character : multiOffer1Possibilities) {
+            if (counts.getOrDefault(character, Integer.valueOf(0)) > 0) {
+                matches.add(character);
+            }
+        }
+        if (matches.size() >= multiOfferCount) {
+            for (int i = 0; i < multiOfferCount; i++) {
+                Character match = matches.get(i);
+                counts.put(match, counts.get(match) - 1);
+            }
+            total += multiOfferValue;
+        }
+        return total;
     }
 
 }
