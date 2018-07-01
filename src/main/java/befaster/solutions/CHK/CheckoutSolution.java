@@ -70,7 +70,7 @@ public class CheckoutSolution {
 
     private static final List<Character> MULTI_OFFER_1_POSSIBILITIES = Arrays.asList('S', 'T', 'X', 'Y', 'Z');
     private static final int MULTI_OFFER_1_COUNT = 3;
-    private static final int MULTI_OFFER_1_VALUE = 130;
+    private static final int MULTI_OFFER_1_VALUE = 45;
 
     private static Map<Character, Integer> values = new HashMap<>();
     static {
