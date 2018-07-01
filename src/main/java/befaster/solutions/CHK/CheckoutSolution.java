@@ -25,7 +25,7 @@ public class CheckoutSolution {
         Map<Character, Integer> counts = new HashMap<>();
         for (char character : skus.toCharArray()) {
             Integer count = counts.getOrDefault(character, Integer.valueOf(0));
-            counts.put(character, count++);
+            counts.put(character, ++count);
         }
 
         int total = 0;
