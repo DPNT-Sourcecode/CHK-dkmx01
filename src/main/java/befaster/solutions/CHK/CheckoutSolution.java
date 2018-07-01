@@ -5,12 +5,27 @@ import java.util.Map;
 
 public class CheckoutSolution {
 
+    /* Ideally, moveall these to another class. */
     private static final int NUM_AS_FOR_5_OFFER = 5;
     private static final int A_5_OFFER = 200;
     private static final int NUM_AS_FOR_3_OFFER = 3;
     private static final int A_3_OFFER = 130;
     private static final int NUM_BS_FOR_OFFER = 2;
     private static final int B_OFFER = 45;
+    private static final int NUM_HS_FOR_10_OFFER = 10;
+    private static final int H_10_OFFER = 80;
+    private static final int NUM_HS_FOR_5_OFFER = 5;
+    private static final int H_5_OFFER = 45;
+    private static final int NUM_KS_FOR_2_OFFER = 2;
+    private static final int K_2_OFFER = 150;
+    private static final int NUM_PS_FOR_5_OFFER = 5;
+    private static final int P_5_OFFER = 200;
+    private static final int NUM_QS_FOR_3_OFFER = 3;
+    private static final int Q_3_OFFER = 80;
+    private static final int NUM_VS_FOR_3_OFFER = 3;
+    private static final int V_3_OFFER = 130;
+    private static final int NUM_VS_FOR_2_OFFER = 2;
+    private static final int V_2_OFFER = 90;
 
     private static final int FREE_OFFER_1_MIN = 0;
     private static final Character FREE_OFFER_1_REQUIREMENT_SUK = 'E';
@@ -18,11 +33,30 @@ public class CheckoutSolution {
     private static final Character FREE_OFFER_1_FREE_SUK = 'B';
     private static final int FREE_OFFER_1_FREE_COUNT = 1;
 
+    /* We have one free for every two, but with a minimum of three.  Logically this is one free for every three */
     private static final int FREE_OFFER_2_MIN = 3;
     private static final Character FREE_OFFER_2_REQUIREMENT_SUK = 'F';
     private static final int FREE_OFFER_2_REQUIREMENT_COUNT = 3;
     private static final Character FREE_OFFER_2_FREE_SUK = 'F';
     private static final int FREE_OFFER_2_FREE_COUNT = 1;
+
+    private static final int FREE_OFFER_3_MIN = 0;
+    private static final Character FREE_OFFER_3_REQUIREMENT_SUK = 'N';
+    private static final int FREE_OFFER_3_REQUIREMENT_COUNT = 3;
+    private static final Character FREE_OFFER_3_FREE_SUK = 'M';
+    private static final int FREE_OFFER_3_FREE_COUNT = 1;
+
+    private static final int FREE_OFFER_4_MIN = 0;
+    private static final Character FREE_OFFER_4_REQUIREMENT_SUK = 'R';
+    private static final int FREE_OFFER_4_REQUIREMENT_COUNT = 3;
+    private static final Character FREE_OFFER_4_FREE_SUK = 'Q';
+    private static final int FREE_OFFER_4_FREE_COUNT = 1;
+
+    private static final int FREE_OFFER_5_MIN = 0;
+    private static final Character FREE_OFFER_5_REQUIREMENT_SUK = 'U';
+    private static final int FREE_OFFER_5_REQUIREMENT_COUNT = 3;
+    private static final Character FREE_OFFER_5_FREE_SUK = 'U';
+    private static final int FREE_OFFER_5_FREE_COUNT = 1;
 
     private static Map<Character, Integer> values = new HashMap<>();
     static {
@@ -32,6 +66,26 @@ public class CheckoutSolution {
         values.put('D', 15);
         values.put('E', 40);
         values.put('F', 10);
+        values.put('G', 20);
+        values.put('H', 10);
+        values.put('I', 35);
+        values.put('J', 60);
+        values.put('K', 80);
+        values.put('L', 90);
+        values.put('M', 15);
+        values.put('N', 40);
+        values.put('O', 10);
+        values.put('P', 50);
+        values.put('Q', 30);
+        values.put('R', 50);
+        values.put('S', 30);
+        values.put('T', 20);
+        values.put('U', 40);
+        values.put('V', 50);
+        values.put('W', 20);
+        values.put('X', 90);
+        values.put('Y', 10);
+        values.put('Z', 50);
     }
 
     public Integer checkout(String skus) {
@@ -44,9 +98,19 @@ public class CheckoutSolution {
         int total = 0;
         freeOffer(counts, FREE_OFFER_1_MIN, FREE_OFFER_1_REQUIREMENT_SUK, FREE_OFFER_1_REQUIREMENT_COUNT, FREE_OFFER_1_FREE_SUK, FREE_OFFER_1_FREE_COUNT);
         freeOffer(counts, FREE_OFFER_2_MIN, FREE_OFFER_2_REQUIREMENT_SUK, FREE_OFFER_2_REQUIREMENT_COUNT, FREE_OFFER_2_FREE_SUK, FREE_OFFER_2_FREE_COUNT);
+        freeOffer(counts, FREE_OFFER_3_MIN, FREE_OFFER_3_REQUIREMENT_SUK, FREE_OFFER_3_REQUIREMENT_COUNT, FREE_OFFER_3_FREE_SUK, FREE_OFFER_3_FREE_COUNT);
+        freeOffer(counts, FREE_OFFER_4_MIN, FREE_OFFER_4_REQUIREMENT_SUK, FREE_OFFER_4_REQUIREMENT_COUNT, FREE_OFFER_4_FREE_SUK, FREE_OFFER_4_FREE_COUNT);
+        freeOffer(counts, FREE_OFFER_5_MIN, FREE_OFFER_5_REQUIREMENT_SUK, FREE_OFFER_5_REQUIREMENT_COUNT, FREE_OFFER_5_FREE_SUK, FREE_OFFER_5_FREE_COUNT);
         total += handleOffer(counts, 'A', NUM_AS_FOR_5_OFFER, A_5_OFFER);
         total += handleOffer(counts, 'A', NUM_AS_FOR_3_OFFER, A_3_OFFER);
         total += handleOffer(counts, 'B', NUM_BS_FOR_OFFER, B_OFFER);
+        total += handleOffer(counts, 'H', NUM_HS_FOR_10_OFFER, H_10_OFFER);
+        total += handleOffer(counts, 'H', NUM_HS_FOR_5_OFFER, H_5_OFFER);
+        total += handleOffer(counts, 'K', NUM_KS_FOR_2_OFFER, K_2_OFFER);
+        total += handleOffer(counts, 'P', NUM_PS_FOR_5_OFFER, P_5_OFFER);
+        total += handleOffer(counts, 'Q', NUM_QS_FOR_3_OFFER, Q_3_OFFER);
+        total += handleOffer(counts, 'V', NUM_VS_FOR_3_OFFER, V_3_OFFER);
+        total += handleOffer(counts, 'V', NUM_VS_FOR_2_OFFER, V_2_OFFER);
         total = handleSkus(counts, total);
 
         return total;
