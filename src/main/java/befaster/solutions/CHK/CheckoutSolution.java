@@ -188,6 +188,8 @@ public class CheckoutSolution {
                 matches.add(character);
             }
         }
+        // We want the most expensive suk at the front of the list.
+        matches.sort();
         if (matches.size() >= multiOfferCount) {
             for (int i = 0; i < multiOfferCount; i++) {
                 Character match = matches.get(i);
