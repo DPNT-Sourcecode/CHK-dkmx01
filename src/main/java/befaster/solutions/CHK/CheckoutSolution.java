@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +71,8 @@ public class CheckoutSolution {
     private static final Character FREE_OFFER_5_FREE_SUK = 'U';
     private static final int FREE_OFFER_5_FREE_COUNT = 1;
 
-    private static final List<Character> MULTI_OFFER_POSSIBILITIES = 
+    private static final List<Character> MULTI_OFFER_1_POSSIBILITIES = Arrays.asList('S', 'T', 'X', 'Y', 'Z');
+    private static final int MULTI_OFFER_1_VALUE = 130;
 
     private static Map<Character, Integer> values = new HashMap<>();
     static {
@@ -115,6 +117,7 @@ public class CheckoutSolution {
         freeOffer(counts, FREE_OFFER_3_MIN, FREE_OFFER_3_REQUIREMENT_SUK, FREE_OFFER_3_REQUIREMENT_COUNT, FREE_OFFER_3_FREE_SUK, FREE_OFFER_3_FREE_COUNT);
         freeOffer(counts, FREE_OFFER_4_MIN, FREE_OFFER_4_REQUIREMENT_SUK, FREE_OFFER_4_REQUIREMENT_COUNT, FREE_OFFER_4_FREE_SUK, FREE_OFFER_4_FREE_COUNT);
         freeOffer(counts, FREE_OFFER_5_MIN, FREE_OFFER_5_REQUIREMENT_SUK, FREE_OFFER_5_REQUIREMENT_COUNT, FREE_OFFER_5_FREE_SUK, FREE_OFFER_5_FREE_COUNT);
+        total += multiOffer(counts, MULTI_OFFER_1_POSSIBILITIES, MULTI_OFFER_1_VALUE);
         total += handleOffer(counts, 'A', NUM_AS_FOR_5_OFFER, A_5_OFFER);
         total += handleOffer(counts, 'A', NUM_AS_FOR_3_OFFER, A_3_OFFER);
         total += handleOffer(counts, 'B', NUM_BS_FOR_OFFER, B_OFFER);
@@ -166,6 +169,17 @@ public class CheckoutSolution {
                 counts.put(freeOffer1FreeSuk, numOfferSkus);
             }
         }
+    }
+
+    private int multiOffer(Map<Character, Integer> counts, List<Character> multiOffer1Possibilities, int multiOffer1Value) {
+        int total = 0;
+        while (int offer = singleMultiOffer(counts, multiOffer1Possibilities, multiOffer1Value) != 0) {
+            total += offer;
+        }
+        return total;
+    }
+
+    private int singleMultiOffer(Map<Character, Integer> counts, List<Character> multiOffer1Possibilities, int multiOffer1Value) {
     }
 
 }
